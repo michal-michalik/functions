@@ -1,2 +1,2 @@
 # functions
-Diffrent useful functions
+Different useful functions
