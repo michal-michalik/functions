@@ -1,0 +1,6 @@
+<?php
+
+function kwotaSlownie($liczba)
+{
+    
+}
