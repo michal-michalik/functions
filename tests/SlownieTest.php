@@ -1,6 +1,6 @@
 <?php
 
-require_once('src/Slownie.php');
+require_once(__DIR__ . '/../src/Slownie.php');
 
 use PHPUnit\Framework\TestCase;
 
