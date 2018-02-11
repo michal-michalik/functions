@@ -16,11 +16,24 @@ final class SlownieTest extends TestCase
             $number
         );
 
-        $number = $slownie->liczba(1);
+        $number = $slownie->liczba(5);
 
         $this->assertEquals(
-            'jeden',
+            'pięć',
             $number
         );
+    }
+
+    public function testThrowingExceptionOnInvalidArgument()
+    {
+        $slownie = new Slownie();
+
+        try {
+            $number = $slownie->liczba("not a number");
+        } catch (Exception $e) {
+
+        }
+
+        $this->fail('Exception not thrown when it\'s needed');
     }
 }
