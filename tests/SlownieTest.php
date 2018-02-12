@@ -11,17 +11,11 @@ final class SlownieTest extends TestCase
         $slownie = new Slownie();
         $number = $slownie->liczba(0);
 
-        $this->assertEquals(
-            'zero',
-            $number
-        );
+        $this->assertEquals('zero', $number);
 
         $number = $slownie->liczba(5);
 
-        $this->assertEquals(
-            'pięć',
-            $number
-        );
+        $this->assertEquals('pięć', $number);
     }
 
     public function testThrowingExceptionOnInvalidArgument()
