@@ -54,15 +54,13 @@ class Slownie
             $number = substr($number, 1, strlen($number) - 1);
         }
 
-        $arr  = $this->numberToArrays($number);
-        $int  = $arr['int'];
-        $frac = $arr['frac'];
+        $array  = $this->numberToArray($number);
 
-        $intLength = count($int);
-        for ($i = 0, $g = $intLength - 1; $i < $intLength; $i++, $g--) {
-            $s = intval($int[$i][2]);
-            $t = intval($int[$i][1]);
-            $h = intval($int[$i][0]);
+        $arrayLength = count($array);
+        for ($i = 0, $g = $arrayLength - 1; $i < $arrayLength; $i++, $g--) {
+            $s = intval($array[$i][2]);
+            $t = intval($array[$i][1]);
+            $h = intval($array[$i][0]);
 
             if ($s === 0 && $t === 0 && $h === 0) {
                 continue;
@@ -97,7 +95,7 @@ class Slownie
 
     }
 
-    private function numberToArrays($number)
+    private function numberToArray($number)
     {
         $numberLength = strlen($number);
         $spaces = (3 - $numberLength % 3) % 3;
