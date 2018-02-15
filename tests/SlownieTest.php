@@ -23,11 +23,10 @@ final class SlownieTest extends TestCase
         $slownie = new Slownie();
 
         try {
-            $number = $slownie->liczba("not a number");
+            $slownie->liczba("not a number");
+            $this->fail('Exception not thrown when it\'s needed');
         } catch (Exception $e) {
 
         }
-
-        $this->fail('Exception not thrown when it\'s needed');
     }
 }
