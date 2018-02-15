@@ -7,11 +7,24 @@ class Slownie
         if (is_numeric($number) === false) {
             throw new Exception("Passed parameter isn't numeric");
         }
+
+        $numberArray = explode('.', $number);
+
+        if (count($numberArray) < 2) {
+            $numberArray[1] = '0';
+        }
+
+        $int  = $this->integerToText($numberArray[0]);
+        $frac = $this->integerToText($numberArray[1]);
+
+        return $int;
+
+        // ...
     }
 
     public function kwota($number)
     {
-
+        // ...
     }
 
     private function integerToText($number)
