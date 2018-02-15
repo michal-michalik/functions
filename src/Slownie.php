@@ -2,11 +2,6 @@
 
 class Slownie
 {
-    /**
-     * @param $number
-     * @return string
-     * @throws Exception
-     */
     public function liczba($number)
     {
         if (is_numeric($number) === false) {
