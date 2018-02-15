@@ -99,49 +99,20 @@ class Slownie
 
     private function numberToArrays($number)
     {
-        $number = explode('.', $number);
-
-        if (count($number) < 2) {
-            $number[1] = '0';
-        }
-
-        // Convert integer part of number to arrays
-
-        $intLength = strlen($number[0]);
-        $spaces = (3 - $intLength % 3) % 3;
+        $numberLength = strlen($number);
+        $spaces = (3 - $numberLength % 3) % 3;
 
         switch ($spaces) {
             case 1:
-                $number[0] = ' ' . $number[0];
+                $number = ' ' . $number;
                 break;
             case 2:
-                $number[0] = '  ' . $number[0];
+                $number = '  ' . $number;
                 break;
         }
 
-        $int  = str_split($number[0], 3);
+        $array  = str_split($number, 3);
 
-        // Convert fraction part to arrays
-
-        $fracLength = strlen($number[1]);
-        $spaces = (3 - $fracLength % 3) % 3;
-
-        switch ($spaces) {
-            case 1:
-                $number[1] = ' ' . $number[1];
-                break;
-            case 2:
-                $number[1] = '  ' . $number[1];
-                break;
-        }
-
-        $frac = str_split($number[1], 3);
-
-        // Return result
-
-        return [
-            'int'  => $int,
-            'frac' => $frac
-        ];
+        return $array;
     }
 }
