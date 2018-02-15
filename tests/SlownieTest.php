@@ -9,13 +9,22 @@ final class SlownieTest extends TestCase
     public function testLiczbaRightAnswer()
     {
         $slownie = new Slownie();
-        $number = $slownie->liczba(0);
 
+        $number = $slownie->liczba(0);
         $this->assertEquals('zero', $number);
 
         $number = $slownie->liczba(5);
-
         $this->assertEquals('pięć', $number);
+
+        $number = $slownie->liczba(-5);
+        $this->assertEquals('minus pięć', $number);
+
+        $number = $slownie->liczba(-976);
+        $this->assertEquals('minus dziewięćset siedemdziesiąt sześć', $number);
+
+        $number = $slownie->liczba("-670037000288");
+        $this->assertEquals('minus sześćset siedemdziesiąt miliardów trzydzieści siedem milionów dwieście osiemdziesiąt osiem', $number);
+
     }
 
     public function testThrowingExceptionOnInvalidArgument()
