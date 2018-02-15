@@ -7,7 +7,15 @@ class Slownie
         if (is_numeric($number) === false) {
             throw new Exception("Passed parameter isn't numeric");
         }
+    }
 
+    public function kwota($number)
+    {
+
+    }
+
+    private function integerToText($number)
+    {
         if ($number == 0) {
             return "zero";
         }
@@ -82,12 +90,6 @@ class Slownie
         $result = trim($sign . $result);
 
         return $result;
-
-    }
-
-    public function kwota($number)
-    {
-
     }
 
     private function numberToArray($number)

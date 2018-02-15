@@ -9,11 +9,11 @@ final class SlownieTest extends TestCase
     public function testLiczbaRightAnswer()
     {
         $slownie = new Slownie();
-        $number = $slownie->liczba(0);
+        $number = $slownie->integerToText(0);
 
         $this->assertEquals('zero', $number);
 
-        $number = $slownie->liczba(5);
+        $number = $slownie->integerToText(5);
 
         $this->assertEquals('pięć', $number);
     }
@@ -23,7 +23,7 @@ final class SlownieTest extends TestCase
         $slownie = new Slownie();
 
         try {
-            $number = $slownie->liczba("not a number");
+            $number = $slownie->integerToText("not a number");
         } catch (Exception $e) {
 
         }
