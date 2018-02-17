@@ -15,11 +15,13 @@ class Slownie
         }
 
         $int  = $this->integerToText($numberArray[0]);
-        $frac = $this->integerToText($numberArray[1]);
+        $frac = $this->fractionToText($numberArray[1]);
 
-        return $int;
-
-        // ...
+        if ($frac == '') {
+            return $int;
+        } else {
+            return $int . ' i ' . $frac;
+        }
     }
 
     public function kwota($number)
@@ -70,7 +72,7 @@ class Slownie
             $number = substr($number, 1, strlen($number) - 1);
         }
 
-        $array  = $this->numberToArray($number);
+        $array = $this->numberToArray($number);
 
         $arrayLength = count($array);
         for ($i = 0, $g = $arrayLength - 1; $i < $arrayLength; $i++, $g--) {
@@ -101,6 +103,118 @@ class Slownie
         }
 
         $result = trim($sign . $result);
+
+        return $result;
+    }
+
+    private function fractionToText($number, $shortFormat = false)
+    {
+        $number = rtrim($number, '0');
+
+        if ($number == '') {
+            return $number;
+        }
+
+        $groups = [
+            [''                         ,''                         ,''                           ],
+            [' dziesiąta'               ,' dziesiąte'               ,' dziesiątych'               ],
+            [' setna'                   ,' setne'                   ,' setnych'                   ],
+            [' tysięczna'               ,' tysięczne'               ,' tysięcznych'               ],
+            [' dziesięciotysięczna'     ,' dziesięciotysięczne'     ,' dziesięciotysięcznych'     ],
+            [' stutysięczna'            ,' stutysięczne'            ,' stutysięcznych'            ],
+            [' milionowa'               ,' milionowe'               ,' milionowych'               ],
+            [' dziesięciomilionowa'     ,' dziesięciomilionowe'     ,' dziesięciomilionowych'     ],
+            [' stumilionowa'            ,' stumilionowe'            ,' stumilionowych'            ],
+            [' miliardowa'              ,' miliardowe'              ,' miliardowych'              ],
+            [' dziesięciomiliardowa'    ,' dziesięciomiliardowe'    ,' dzięsieciomiliardowych'    ],
+            [' stumiliardowa'           ,' stumiliardowe'           ,' stumiliardowych'           ],
+            [' bilionowa'               ,' bilionowe'               ,' bilionowych'               ],
+            [' dzięsięciobilionowa'     ,' dzięsięciobilionowe'     ,' dzięsięciobilionowych'     ],
+            [' stubilionowa'            ,' stubilionowe'            ,' stubilionowych'            ],
+            [' biliardowa'              ,' biliardowe'              ,' biliardowych'              ],
+            [' dzięsięciobiliardowa'    ,' dzięsięciobiliardowe'    ,' dzięsięciobiliardowych'    ],
+            [' stubiliardowa'           ,' stubiliardowe'           ,' stubiliardowych'           ],
+            [' trylionowa'              ,' trylionowe'              ,' trylionowych'              ],
+            [' dziesięciotrylionowa'    ,' dziesięciotrylionowe'    ,' dziesięciotrylionowych'    ],
+            [' stutrylionowa'           ,' stutrylionowe'           ,' stutrylionowych'           ],
+            [' tryliardowa'             ,' tryliardowe'             ,' tryliardowych'             ],
+            [' dzięsięciotryliardowa'   ,' dzięsięciotryliardowe'   ,' dzięsięciotryliardowych'   ],
+            [' stutryliardowa'          ,' stutryliardowe'          ,' stutryliardowych'          ],
+            [' kwadrylionowa'           ,' kwadrylionowe'           ,' kwadrylionowych'           ],
+            [' dzięsięciokwadrylionowa' ,' dzięsięciokwadrylionowe' ,' dzięsięciokwadrylionowych' ],
+            [' stukwadrylionowa'        ,' stukwadrylionowe'        ,' stukwadrylionowych'        ],
+            [' kwadryliardowa'          ,' kwadryliardowe'          ,' kwadryliardowych'          ],
+            [' dzięsięciokwadryliardowa',' dzięsięciokwadryliardowe',' dzięsięciokwadryliardowych'],
+            [' stukwadryliardowa'       ,' stukwadryliardowe'       ,' stukwadryliardowych'       ],
+            [' kwintylionowa'           ,' kwintylionowe'           ,' kwintylionowych'           ],
+            [' dzięsięciokwintylionowa' ,' dzięsięciokwintylionowe' ,' dzięsięciokwintylionowych' ],
+            [' stukwintylionowa'        ,' stukwintylionowe'        ,' stukwintylionowych'        ],
+            [' kwintyliardowa'          ,' kwintyliardowe'          ,' kwintyliardowych'          ],
+            [' dzięsięciokwintyliardowa',' dzięsięciokwintyliardowe',' dzięsięciokwintyliardowych'],
+            [' stukwintyliardowa'       ,' stukwintyliardowe'       ,' stukwintyliardowych'       ],
+            [' sekstylionowa'           ,' sekstylionowe'           ,' sekstylionowych'           ],
+            [' dziesięciosekstylionowa' ,' dziesięciosekstylionowe' ,' dziesięciosekstylionowych' ],
+            [' stusekstylionowa'        ,' stusekstylionowe'        ,' stusekstylionowych'        ],
+            [' sekstyliardowa'          ,' sekstyliardowe'          ,' sekstyliardowych'          ],
+            [' dziesięciosekstyliardowa',' dziesięciosekstyliardowe',' dziesięciosekstyliardowych'],
+            [' stusekstyliardowa'       ,' stusekstyliardowe'       ,' stusekstyliardowych'       ],
+            [' septylionowa'            ,' septylionowe'            ,' septylionowych'            ],
+            [' dziesięcioseptylionowa'  ,' dziesięcioseptylionowe'  ,' dziesięcioseptylionowych'  ],
+            [' stuseptylionowa'         ,' stuseptylionowe'         ,' stuseptylionowych'         ],
+            [' septyliardowa'           ,' septyliardowe'           ,' septyliardowych'           ],
+            [' dziesięcioseptyliardowa' ,' dziesięcioseptyliardowe' ,' dziesięcioseptyliardowych' ],
+            [' stuseptyliardowa'        ,' stuseptyliardowe'        ,' stuseptyliardowych'        ],
+            [' oktylionowa'             ,' oktylionowe'             ,' oktylionowych'             ],
+            [' dziesięciooktylionowa'   ,' dziesięciooktylionowe'   ,' dziesięciooktylionowych'   ],
+            [' stuoktylionowa'          ,' stuoktylionowe'          ,' stuoktylionowych'          ],
+            [' oktyliardowa'            ,' oktyliardowe'            ,' oktyliardowych'            ],
+            [' dziesięciooktyliardowa'  ,' dziesięciooktyliardowe'  ,' dziesięciooktyliardowych'  ],
+            [' stuoktyliardowa'         ,' stuoktyliardowe'         ,' stuoktyliardowych'         ],
+            [' nonylionowa'             ,' nonylionowe'             ,' nonylionowych'             ],
+            [' dziesięciononylionowa'   ,' dziesięciononylionowe'   ,' dziesięciononylionowych'   ],
+            [' stunonylionowa'          ,' stunonylionowe'          ,' stunonylionowych'          ],
+            [' nonyliardowa'            ,' nonyliardowe'            ,' nonyliardowych'            ],
+            [' dziesięciononyliardowa'  ,' dziesięciononyliardowe'  ,' dziesięciononyliardowych'  ],
+            [' stunonyliardowa'         ,' stunonyliardowe'         ,' stunonyliardowych'         ],
+            [' decylionowa'             ,' decylionowe'             ,' decylionowych'             ],
+            [' dziesięciodecylionowa'   ,' dziesięciodecylionowe'   ,' dziesięciodecylionowych'   ],
+            [' studecylionowa'          ,' studecylionowe'          ,' studecylionowych'          ],
+            [' decyliardowa'            ,' decyliardowe'            ,' decyliardowych'            ],
+            [' dziesięciodecyliardowa'  ,' dziesięciodecyliardowe'  ,' dziesięciodecyliardowych'  ],
+            [' studecyliardowa'         ,' studecyliardowe'         ,' studecyliardowych'         ]
+        ];
+
+        $array = $this->numberToArray($number);
+        $arrayLength = count($array);
+
+        $s = intval($array[$arrayLength - 1][2]);
+        $t = intval($array[$arrayLength - 1][1]);
+        $h = intval($array[$arrayLength - 1][0]);
+
+        $isTeens = ($t === 1 && $s !== 0) ? 1 : 0;
+
+        // Choose valid grammar form
+        if ($s === 1 &&  ($h + $t + $isTeens) === 0) {
+            $grammarForm = 0;
+        } elseif ($s === 2 || $s === 3 || $s === 4) {
+            $grammarForm = 1;
+        } else {
+            $grammarForm = 2;
+        }
+
+        $trimmedNumber = ltrim($number, '0');
+
+        if ($trimmedNumber == '1') {
+            $result = 'jedna';
+        } elseif ($trimmedNumber == '2') {
+            $result = 'dwie';
+        } else {
+            $result = $this->integerToText($number);
+        }
+
+        $numberLength = strlen($number);
+
+        $result .= $groups[$numberLength][$grammarForm];
 
         return $result;
     }
