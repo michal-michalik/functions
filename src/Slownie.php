@@ -8,6 +8,11 @@ class Slownie
             throw new Exception("Passed parameter isn't numeric");
         }
 
+        // Convert to string
+        if (is_float($number)) {
+            $number = number_format($number, 9);
+        }
+
         $numberArray = explode('.', $number);
 
         if (count($numberArray) < 2) {
