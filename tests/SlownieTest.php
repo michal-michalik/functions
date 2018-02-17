@@ -6,7 +6,7 @@ use PHPUnit\Framework\TestCase;
 
 final class SlownieTest extends TestCase
 {
-    public function testLiczbaRightAnswer()
+    public function testLiczbaRightAnswerOnIntegerParameter()
     {
         $slownie = new Slownie();
 
@@ -24,7 +24,6 @@ final class SlownieTest extends TestCase
 
         $number = $slownie->liczba("-670037000288");
         $this->assertEquals('minus sześćset siedemdziesiąt miliardów trzydzieści siedem milionów dwieście osiemdziesiąt osiem', $number);
-
     }
 
     public function testThrowingExceptionOnInvalidArgument()
