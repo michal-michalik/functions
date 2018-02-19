@@ -201,8 +201,6 @@ class Slownie
 
         $isTeens = ($t === 1 && $s !== 0) ? true : false;
 
-        $numberLength  = strlen($number);
-
         // Choose valid grammar form
         if ($number == 1) {
             $grammarForm = 0;
@@ -211,6 +209,8 @@ class Slownie
         } else {
             $grammarForm = 2;
         }
+
+        $numberLength  = strlen($number);
 
         if ($number == 1) {
             $result = 'jedna';
