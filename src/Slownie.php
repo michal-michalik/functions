@@ -202,10 +202,9 @@ class Slownie
         $isTeens = ($t === 1 && $s !== 0) ? true : false;
 
         $numberLength  = strlen($number);
-        $trimmedNumber = ltrim($number, '0');
 
         // Choose valid grammar form
-        if ($trimmedNumber == '1') {
+        if ($number == 1) {
             $grammarForm = 0;
         } elseif (($s === 2 || $s === 3 || $s === 4) && $isTeens === false) {
             $grammarForm = 1;
@@ -213,7 +212,7 @@ class Slownie
             $grammarForm = 2;
         }
 
-        if ($trimmedNumber == '1') {
+        if ($number == 1) {
             $result = 'jedna';
         } elseif ($s == '2' && $isTeens === false) {
             $number[$numberLength - 1] = '0';
