@@ -6,7 +6,7 @@ use PHPUnit\Framework\TestCase;
 
 final class SlownieTest extends TestCase
 {
-    public function testLiczbaRightAnswerOnIntegerParameter()
+    public function testLiczbaRightAnswerOnIntegerNumberParameter()
     {
         $slownie = new Slownie();
 
@@ -24,6 +24,30 @@ final class SlownieTest extends TestCase
 
         $number = $slownie->liczba("-670037000288");
         $this->assertEquals('minus sześćset siedemdziesiąt miliardów trzydzieści siedem milionów dwieście osiemdziesiąt osiem', $number);
+    }
+
+    public function testLiczbaRightAnswerOnRealNumberParameter()
+    {
+        $slownie = new Slownie();
+
+        $number = $slownie->liczba(0.0001);
+        $this->assertEquals('zero i jedna dziesięciotysięczna', $number);
+
+        $number = $slownie->liczba(0.00002);
+        $this->assertEquals('zero i dwie stutysięczne', $number);
+
+        $number = $slownie->liczba(0.13);
+        $this->assertEquals('zero i trzynaście setnych', $number);
+
+        $number = $slownie->liczba('-0.13');
+        $this->assertEquals('minus zero i trzynaście setnych', $number);
+
+        $number = $slownie->liczba(12.9461);
+        $this->assertEquals('dwanaście i dziewięć tysięcy czterysta sześćdziesiąt jeden dziesięciotysięcznych', $number);
+
+        $number = $slownie->liczba('9943.12000000');
+        $this->assertEquals('dziewięć tysięcy dziewięćset czterdzieści trzy i dwanaście setnych', $number);
+
     }
 
     public function testThrowingExceptionOnInvalidArgument()
