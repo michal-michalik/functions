@@ -130,7 +130,30 @@ class Slownie
 
     public function kwota($number)
     {
-        // ...
+        if (is_numeric($number) === false) {
+            throw new Exception("Passed parameter isn't numeric");
+        }
+
+        // Convert to string
+        if (is_float($number)) {
+            $number = number_format($number, 9);
+        }
+
+        $numberArray = explode('.', $number);
+
+        if (count($numberArray) < 2) {
+            $numberArray[1] = '0';
+        }
+
+        $numberArray[1] = substr($numberArray[1], 0, 2);
+
+        $zlote  = $this->integerToText($numberArray[0]);
+        $grosze = $this->integerToText($numberArray[1]);
+
+        $zloteGrammarForm  = $this->zlote[$this->kwotaGrammarForm($numberArray[0])];
+        $groszeGrammarForm = $this->grosze[$this->kwotaGrammarForm($numberArray[1])];
+
+        return "$zlote $zloteGrammarForm, $grosze $groszeGrammarForm";
     }
 
     private function integerToText($number)
