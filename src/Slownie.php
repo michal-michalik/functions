@@ -98,6 +98,8 @@ class Slownie
         [' dziesięciodecyliardowa'  ,' dziesięciodecyliardowe'  ,' dziesięciodecyliardowych'  ],
         [' studecyliardowa'         ,' studecyliardowe'         ,' studecyliardowych'         ]
     ];
+    private $zlote  = ['złoty', 'złote', 'złotych'];
+    private $grosze = ['grosz', 'grosze', 'groszy'];
 
     public function liczba($number)
     {
