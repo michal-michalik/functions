@@ -138,7 +138,7 @@ class Slownie
 
         if ($number[0] == '-') {
             $sign = 'minus';
-            $number = substr($number, 1, strlen($number) - 1);
+            $number = substr($number, 1);
         }
 
         if ($number == 0) {
