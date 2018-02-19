@@ -145,7 +145,7 @@ class Slownie
             $numberArray[1] = '0';
         }
 
-        $numberArray[1] = substr($numberArray[1], 0, 2);
+        $numberArray[1] = substr($numberArray[1] . '0', 0, 2);
 
         $zlote  = $this->integerToText($numberArray[0]);
         $grosze = $this->integerToText($numberArray[1]);
