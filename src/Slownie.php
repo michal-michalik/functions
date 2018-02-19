@@ -194,30 +194,34 @@ class Slownie
 
         $s = intval($array[$arrayLength - 1][2]);
         $t = intval($array[$arrayLength - 1][1]);
-        $h = intval($array[$arrayLength - 1][0]);
 
-        $isTeens = ($t === 1 && $s !== 0) ? 1 : 0;
+        $isTeens = ($t === 1 && $s !== 0) ? true : false;
+
+        $numberLength  = strlen($number);
+        $trimmedNumber = ltrim($number, '0');
 
         // Choose valid grammar form
-        if ($s === 1 &&  ($h + $t + $isTeens) === 0) {
+        if ($trimmedNumber == '1') {
             $grammarForm = 0;
-        } elseif ($s === 2 || $s === 3 || $s === 4) {
+        } elseif (($s === 2 || $s === 3 || $s === 4) && $isTeens === false) {
             $grammarForm = 1;
         } else {
             $grammarForm = 2;
         }
 
-        $trimmedNumber = ltrim($number, '0');
-
         if ($trimmedNumber == '1') {
             $result = 'jedna';
-        } elseif ($trimmedNumber == '2') {
-            $result = 'dwie';
+        } elseif ($s == '2') {
+            $number[$numberLength - 1] = '0';
+
+            if (trim($number, '0') == 0) {
+                $result = 'dwie';
+            } else {
+                $result = $this->integerToText($number) . ' dwie';
+            }
         } else {
             $result = $this->integerToText($number);
         }
-
-        $numberLength = strlen($number);
 
         $result .= $groups[$numberLength][$grammarForm];
 
