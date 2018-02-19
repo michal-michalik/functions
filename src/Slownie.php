@@ -185,7 +185,7 @@ class Slownie
         return $result;
     }
 
-    private function fractionToText($number, $shortFormat = false)
+    private function fractionToText($number)
     {
         $number = rtrim($number, '0');
 
