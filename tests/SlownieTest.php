@@ -78,6 +78,12 @@ final class SlownieTest extends TestCase
         $kwota = $slownie->kwota(1000005.01);
         $this->assertEquals('jeden milion pięć złotych, jeden grosz', $kwota);
 
+        $kwota = $slownie->kwota(15.2);
+        $this->assertEquals('piętnaście złotych, dwadzieścia groszy', $kwota);
+
+        $kwota = $slownie->kwota('15.2');
+        $this->assertEquals('piętnaście złotych, dwadzieścia groszy', $kwota);
+
     }
 
     public function testThrowingExceptionOnInvalidArgument()
