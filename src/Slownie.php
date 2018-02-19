@@ -216,7 +216,7 @@ class Slownie
 
         if ($trimmedNumber == '1') {
             $result = 'jedna';
-        } elseif ($s == '2') {
+        } elseif ($s == '2' && $isTeens === false) {
             $number[$numberLength - 1] = '0';
 
             if (trim($number, '0') == 0) {
