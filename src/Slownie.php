@@ -251,4 +251,25 @@ class Slownie
 
         return $array;
     }
+
+    private function kwotaGrammarForm($number) {
+        $array = $this->numberToArray($number);
+        $arrayLength = count($array);
+
+        $s = intval($array[$arrayLength - 1][2]);
+        $t = intval($array[$arrayLength - 1][1]);
+
+        $isTeens = ($t === 1 && $s !== 0) ? true : false;
+
+        // Choose valid grammar form
+        if ($number == 1) {
+            $grammarForm = 0;
+        } elseif (($s === 2 || $s === 3 || $s === 4) && $isTeens === false) {
+            $grammarForm = 1;
+        } else {
+            $grammarForm = 2;
+        }
+
+        return $grammarForm;
+    }
 }
