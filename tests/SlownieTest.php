@@ -62,6 +62,24 @@ final class SlownieTest extends TestCase
 
     }
 
+    public function testKwotaRightAnswer()
+    {
+        $slownie = new Slownie();
+
+        $kwota = $slownie->kwota(1.49);
+        $this->assertEquals('jeden złoty, czterdzieści dziewięć groszy', $kwota);
+
+        $kwota = $slownie->kwota(-602.02);
+        $this->assertEquals('minus sześćset dwa złote, dwa grosze', $kwota);
+
+        $kwota = $slownie->kwota('1000005.01');
+        $this->assertEquals('jeden milion pięć złotych, jeden grosz', $kwota);
+
+        $kwota = $slownie->kwota(1000005.01);
+        $this->assertEquals('jeden milion pięć złotych, jeden grosz', $kwota);
+
+    }
+
     public function testThrowingExceptionOnInvalidArgument()
     {
         $slownie = new Slownie();
