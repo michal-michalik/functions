@@ -36,8 +36,21 @@ class Slownie
 
     private function integerToText($number)
     {
+        $result = '';
+        $sign   = '';
+
+        if ($number[0] == '-') {
+            $sign = 'minus';
+            $number = substr($number, 1, strlen($number) - 1);
+        }
+
         if ($number == 0) {
-            return "zero";
+            if ($sign) {
+                return "minus zero";
+            }
+            else {
+                return "zero";
+            }
         }
 
         $singles   = ['', ' jeden', ' dwa', ' trzy', ' cztery', ' pięć', ' sześć', ' siedem', ' osiem', ' dziewięć'];
@@ -68,14 +81,6 @@ class Slownie
             [' decylion'    ,' decyliony'   ,' decylionów'   ],
             [' decyliard'   ,' decyliardy'  ,' decyliardów'  ]
         ];
-
-        $sign   = '';
-        $result = '';
-
-        if ($number[0] == '-') {
-            $sign = 'minus';
-            $number = substr($number, 1, strlen($number) - 1);
-        }
 
         $array = $this->numberToArray($number);
 
