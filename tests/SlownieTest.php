@@ -13,6 +13,9 @@ final class SlownieTest extends TestCase
         $number = $slownie->liczba(0);
         $this->assertEquals('zero', $number);
 
+        $number = $slownie->liczba(-0);
+        $this->assertEquals('zero', $number);
+
         $number = $slownie->liczba(5);
         $this->assertEquals('pięć', $number);
 
@@ -36,6 +39,12 @@ final class SlownieTest extends TestCase
         $number = $slownie->liczba(0.00002);
         $this->assertEquals('zero i dwie stutysięczne', $number);
 
+        $number = $slownie->liczba(-0.02);
+        $this->assertEquals('minus zero i dwie setne', $number);
+
+        $number = $slownie->liczba(-0.012);
+        $this->assertEquals('minus zero i dwanaście tysięcznych', $number);
+
         $number = $slownie->liczba(0.13);
         $this->assertEquals('zero i trzynaście setnych', $number);
 
@@ -47,6 +56,9 @@ final class SlownieTest extends TestCase
 
         $number = $slownie->liczba('9943.12000000');
         $this->assertEquals('dziewięć tysięcy dziewięćset czterdzieści trzy i dwanaście setnych', $number);
+
+        $number = $slownie->liczba('897.016');
+        $this->assertEquals('osiemset dziewięćdziesiąt siedem i szesnaście tysięcznych', $number);
 
     }
 
