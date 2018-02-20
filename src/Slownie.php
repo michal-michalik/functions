@@ -109,7 +109,7 @@ class Slownie
 
         // Convert to string
         if (is_float($number)) {
-            $number = number_format($number, 9, '.', '');
+            $number = number_format($number, 6, '.', '');
         }
 
         $numberArray = explode('.', $number);
@@ -136,7 +136,7 @@ class Slownie
 
         // Convert to string
         if (is_float($number)) {
-            $number = number_format($number, 9, '.', '');
+            $number = number_format($number, 6, '.', '');
         }
 
         $numberArray = explode('.', $number);
