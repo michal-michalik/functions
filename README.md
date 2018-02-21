@@ -3,9 +3,9 @@ slownie
 
 Klasa "Slownie" pozwala na zamianę liczb i kwot na ich zapis słowny.
 
-Zakres liczb zamienianych na zapis słowny: <-10<sup>66</sup>+1; 10<sup>66</sup>-1>
+Zakres liczb zamienianych na zapis słowny: <-10<sup>78</sup>+1; 10<sup>78</sup>-1>
 
-Maksymalna precyzja: 1/(10<sup>65</sup>)
+Maksymalna precyzja: 1/(10<sup>77</sup>)
 
 Przykład użycia
 ---------------
