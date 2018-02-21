@@ -189,7 +189,7 @@ class Slownie
 
             $isTeens = ($t === 1 && $s !== 0) ? 1 : 0;
 
-            // Choose valid grammar form
+            // Choose correct grammar form
             if ($s === 1 &&  ($h + $t + $isTeens) === 0) {
                 $grammarForm = 0;
             } elseif ($s === 2 || $s === 3 || $s === 4) {
@@ -226,7 +226,7 @@ class Slownie
 
         $isTeens = ($t === 1 && $s !== 0) ? true : false;
 
-        // Choose valid grammar form
+        // Choose correct grammar form
         if ($number == 1) {
             $grammarForm = 0;
         } elseif (($s === 2 || $s === 3 || $s === 4) && $isTeens === false) {
@@ -284,7 +284,7 @@ class Slownie
 
         $isTeens = ($t === 1 && $s !== 0) ? true : false;
 
-        // Choose valid grammar form
+        // Choose correct grammar form
         if ($number == 1) {
             $grammarForm = 0;
         } elseif (($s === 2 || $s === 3 || $s === 4) && $isTeens === false) {
